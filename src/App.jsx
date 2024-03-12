@@ -26,7 +26,7 @@ function App() {
         <BarraLateral/>
         <Banner 
           texto={'A galeria mais completa de fotos do espaço!'}
-          backgroundImage={'/imagens/Banner.png'}
+          backgroundImage={'./imagens/Banner.png'}
         />
       </FlexContaienr>
     </FundoGradiente>
