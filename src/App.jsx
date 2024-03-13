@@ -1,3 +1,4 @@
+import fotos from './fotos.json'
 import styled from "styled-components"
 import EstilosGlobais from "./componentes/EstilosGlobais"
 import Cabecalho from "./componentes/Cabecalho"
@@ -38,7 +39,7 @@ function App() {
             <Banner
               texto={'A galeria mais completa de fotos do espaço!'}
               backgroundImage={'./imagens/Banner.png'} />
-            <Galeria />
+            <Galeria fotos={fotos}/>
           </ConteudoGaleria>
         </MainContaienr>
       </AppContainer>
