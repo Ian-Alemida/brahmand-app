@@ -1,13 +1,8 @@
-import styled from "styled-components"
+import { styled } from "styled-components"
 import BotaoIcone from "../../BotaoIcone"
 
-const FlexContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 33px;
-`
 const Figure = styled.figure`
-    width: ${(props) => (props.$expandida ? '90%' : '460px')};
+    width: ${props => props.$expandida ? '90%' : '460px'};
     max-width: 100%;
     margin: 0;
     display: flex;
@@ -21,37 +16,42 @@ const Figure = styled.figure`
         border-radius: 0px 0px 20px 20px;
         color: white;
         box-sizing: border-box;
-        padding: 0 18px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 80px;
+        padding: 12px;
         h3 {
             font-family: 'GandhiSansBold';
-            margin: 0;
-            font-size: 20px;
         }
-        footer{
-            display: flex;
+        h4 {
+            flex-grow: 1;
+        }
+        h3, h4 {
+            margin: 0;
+            font-size: 16px;
         }
     }
 `
-function Imagem({ fotos, expandida = false, aoZoomSolicitado }) {
-    return (
-        <FlexContainer>
-            {fotos.map(foto => 
-                <Figure $expandida={expandida} id={`foto-${foto.id}`}>
-                    <img src={foto.path} alt="" />
-                    <figcaption>
-                        <h3>{foto.titulo}</h3>
-                        <footer>
-                            <BotaoIcone><img src={'/icones/favorito.png'} alt="" /></BotaoIcone>
-                            {!expandida && <BotaoIcone aria-hidden={expandida} onClick={() => aoZoomSolicitado(foto)}><img src={'/icones/expandir.png'} alt="" /></BotaoIcone>}
-                        </footer>
-                    </figcaption>
-                </Figure>)}
-        </FlexContainer>
-    )
+
+const Rodape = styled.footer`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const Imagem = ({ foto, expandida = false, aoZoomSolicitado }) => {
+    return (<Figure $expandida={expandida} id={`foto-${foto.id}`}>
+        <img src={foto.path} alt={foto.alt} />
+        <figcaption>
+            <h3>{foto.titulo}</h3>
+            <Rodape>
+                <h4>{foto.fonte}</h4>
+                <BotaoIcone>
+                    <img src="/icones/favorito.png" alt="Icone de favorito" />
+                </BotaoIcone>
+                {!expandida && <BotaoIcone aria-hidden={expandida} onClick={() => aoZoomSolicitado(foto)}>
+                    <img src="/icones/expandir.png" alt="Icone de expandir" />
+                </BotaoIcone>}
+            </Rodape>
+        </figcaption>
+    </Figure>)
 }
 
 export default Imagem
