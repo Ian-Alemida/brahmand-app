@@ -36,17 +36,17 @@ const Figure = styled.figure`
         }
     }
 `
-function Imagem({ fotos }) {
+function Imagem({ fotos, expandida = false, aoZoomSolicitado }) {
     return (
         <FlexContainer>
             {fotos.map(foto => 
-                <Figure >
+                <Figure $expandida={expandida} id={`foto-${foto.id}`}>
                     <img src={foto.path} alt="" />
                     <figcaption>
                         <h3>{foto.titulo}</h3>
                         <footer>
                             <BotaoIcone><img src={'/icones/favorito.png'} alt="" /></BotaoIcone>
-                            <BotaoIcone><img src={'/icones/expandir.png'} alt="" /></BotaoIcone>
+                            {!expandida && <BotaoIcone aria-hidden={expandida} onClick={() => aoZoomSolicitado(foto)}><img src={'/icones/expandir.png'} alt="" /></BotaoIcone>}
                         </footer>
                     </figcaption>
                 </Figure>)}

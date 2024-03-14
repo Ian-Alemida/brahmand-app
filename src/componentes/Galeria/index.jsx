@@ -12,14 +12,17 @@ const SecaoFluida = styled.section`
     flex-grow: 1;
 `
 
-function Galeria({fotos}) {
+function Galeria({fotos, aoFotoSelecionada}) {
     return (
         <>
             <Tags />
             <GaleriaContainer>
                 <SecaoFluida>
                     <Titulo>Navegue pela galeria</Titulo>
-                    <Imagem fotos={fotos}></Imagem>
+                    <Imagem 
+                        fotos={fotos}
+                        aoZoomSolicitado={aoFotoSelecionada}
+                    ></Imagem>
                 </SecaoFluida>
                 <Populares />
             </GaleriaContainer>
