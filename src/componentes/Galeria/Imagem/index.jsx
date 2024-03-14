@@ -19,13 +19,14 @@ const Figure = styled.figure`
         padding: 12px;
         h3 {
             font-family: 'GandhiSansBold';
+            font-size: 16px;
         }
         h4 {
+            font-size: 12px;
             flex-grow: 1;
         }
         h3, h4 {
             margin: 0;
-            font-size: 16px;
         }
     }
 `
