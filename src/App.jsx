@@ -7,7 +7,7 @@ import bannerBackground from './assets/banner.png'
 import Galeria from "./componentes/Galeria"
 
 import fotos from './fotos.json'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ModalZoom from "./componentes/ModalZoom"
 
 const FundoGradiente = styled.div`
@@ -36,8 +36,23 @@ const ConteudoGaleria = styled.section`
 const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
+  const [filtroBusca, setFiltroBusca] = useState('')
+
+  useEffect(() => {
+    const fotosFiltradas = fotosDaGaleria.filter(foto => {
+      const filtroPorTitulo = !filtroBusca || foto.titulo.toLowerCase().includes(filtroBusca.toLowerCase());
+      return filtroPorTitulo
+    })
+    setFotosDaGaleria(fotosFiltradas)
+}, [filtroBusca]);
 
   const aoFavoritar = (foto) =>{
+    if(foto.id === fotoSelecionada?.id){
+      setFotoSelecionada({
+        ...fotoSelecionada,
+        favorita: !fotoSelecionada.favorita
+      })
+    }
     setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
       return{
         ...fotoDaGaleria,
@@ -50,7 +65,7 @@ const App = () => {
     <FundoGradiente>
       <EstilosGlobais />
       <AppContainer>
-        <Cabecalho />
+        <Cabecalho setFiltroBusca={setFiltroBusca}/>
         <MainContainer>
           <BarraLateral />
           <ConteudoGaleria>
@@ -69,6 +84,7 @@ const App = () => {
       <ModalZoom 
         foto={fotoSelecionada}
         aoFechar={() => setFotoSelecionada(null)}
+        aoFavoritar={aoFavoritar}
       />
     </FundoGradiente>
   )
