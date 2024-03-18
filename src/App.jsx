@@ -34,20 +34,28 @@ const ConteudoGaleria = styled.section`
 `
 
 const App = () => {
+  //-------- Estados da aplicação
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [filtroBusca, setFiltroBusca] = useState('')
   const [tag, setTag] = useState(0)
+  //Função que ignora acentos das palavras
+  function removeAcentos(string){
+    return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
 
+  //Utilizando o useEffect para filtrar a busca
   useEffect(() => {
     const fotosFiltradas = fotos.filter(foto => {
-      const filtroPorTitulo = !filtroBusca || foto.titulo.toLowerCase().includes(filtroBusca.toLowerCase());
+      const tituloSemAcento = removeAcentos(foto.titulo.toLowerCase())
+      const filtroPorTitulo = !filtroBusca || tituloSemAcento.includes(filtroBusca.toLowerCase());
       const filtroPorTags = !tag || foto.tagId === tag
       return filtroPorTitulo && filtroPorTags
     })
     setFotosDaGaleria(fotosFiltradas)
 }, [filtroBusca, tag]);
 
+  //Função que favorita as fotos
   const aoFavoritar = (foto) =>{
     if(foto.id === fotoSelecionada?.id){
       setFotoSelecionada({
