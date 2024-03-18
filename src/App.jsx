@@ -37,14 +37,16 @@ const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [filtroBusca, setFiltroBusca] = useState('')
+  const [tag, setTag] = useState(0)
 
   useEffect(() => {
-    const fotosFiltradas = fotosDaGaleria.filter(foto => {
+    const fotosFiltradas = fotos.filter(foto => {
       const filtroPorTitulo = !filtroBusca || foto.titulo.toLowerCase().includes(filtroBusca.toLowerCase());
-      return filtroPorTitulo
+      const filtroPorTags = !tag || foto.tagId === tag
+      return filtroPorTitulo && filtroPorTags
     })
     setFotosDaGaleria(fotosFiltradas)
-}, [filtroBusca]);
+}, [filtroBusca, tag]);
 
   const aoFavoritar = (foto) =>{
     if(foto.id === fotoSelecionada?.id){
@@ -76,6 +78,7 @@ const App = () => {
             <Galeria 
               aoFavoritar={aoFavoritar}
               aoFotoSelecionada={foto => setFotoSelecionada(foto)} 
+              setTag={setTag}
               fotos={fotosDaGaleria}
             />
           </ConteudoGaleria>
