@@ -36,6 +36,15 @@ const ConteudoGaleria = styled.section`
 const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
+
+  const aoFavoritar = (foto) =>{
+    setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
+      return{
+        ...fotoDaGaleria,
+        favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : fotoDaGaleria.favorita
+      }
+    }))
+  }
   
   return (
     <FundoGradiente>
@@ -50,6 +59,7 @@ const App = () => {
               backgroundImage={bannerBackground}
             />
             <Galeria 
+              aoFavoritar={aoFavoritar}
               aoFotoSelecionada={foto => setFotoSelecionada(foto)} 
               fotos={fotosDaGaleria}
             />
