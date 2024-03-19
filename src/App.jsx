@@ -5,10 +5,10 @@ import BarraLateral from "./componentes/BarraLateral"
 import Banner from "./componentes/Banner"
 import bannerBackground from './assets/banner.png'
 import Galeria from "./componentes/Galeria"
-
 import fotos from './fotos.json'
 import { useEffect, useState } from "react"
 import ModalZoom from "./componentes/ModalZoom"
+import Rodape from "./componentes/Rodape"
 
 const FundoGradiente = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -39,8 +39,9 @@ const App = () => {
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [filtroBusca, setFiltroBusca] = useState('')
   const [tag, setTag] = useState(0)
+
   //Função que ignora acentos das palavras
-  function removeAcentos(string){
+  function removeAcentos(string) {
     return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
@@ -53,50 +54,48 @@ const App = () => {
       return filtroPorTitulo && filtroPorTags
     })
     setFotosDaGaleria(fotosFiltradas)
-}, [filtroBusca, tag]);
+  }, [filtroBusca, tag]);
 
   //Função que favorita as fotos
-  const aoFavoritar = (foto) =>{
-    if(foto.id === fotoSelecionada?.id){
+  const aoFavoritar = (foto) => {
+    if (foto.id === fotoSelecionada?.id) {
       setFotoSelecionada({
         ...fotoSelecionada,
         favorita: !fotoSelecionada.favorita
       })
     }
     setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
-      return{
+      return {
         ...fotoDaGaleria,
         favorita: fotoDaGaleria.id === foto.id ? !foto.favorita : fotoDaGaleria.favorita
       }
     }))
   }
-  
+
   return (
     <FundoGradiente>
       <EstilosGlobais />
       <AppContainer>
-        <Cabecalho setFiltroBusca={setFiltroBusca}/>
+        <Cabecalho setFiltroBusca={setFiltroBusca} />
         <MainContainer>
           <BarraLateral />
           <ConteudoGaleria>
             <Banner
               texto="A galeria mais completa de fotos do espaço!"
-              backgroundImage={bannerBackground}
-            />
-            <Galeria 
+              backgroundImage={bannerBackground} />
+            <Galeria
               aoFavoritar={aoFavoritar}
-              aoFotoSelecionada={foto => setFotoSelecionada(foto)} 
+              aoFotoSelecionada={foto => setFotoSelecionada(foto)}
               setTag={setTag}
-              fotos={fotosDaGaleria}
-            />
+              fotos={fotosDaGaleria} />
           </ConteudoGaleria>
         </MainContainer>
       </AppContainer>
-      <ModalZoom 
+      <Rodape />
+      <ModalZoom
         foto={fotoSelecionada}
         aoFechar={() => setFotoSelecionada(null)}
-        aoFavoritar={aoFavoritar}
-      />
+        aoFavoritar={aoFavoritar} />
     </FundoGradiente>
   )
 }
