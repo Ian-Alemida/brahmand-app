@@ -51,7 +51,7 @@ function Rodape() {
                     </a>
                 </li>
             </IconeContainer>
-            <RodapeTexto>Desenvolvido por Alura.</RodapeTexto>
+            <RodapeTexto>© 2024 - Code by Ian Almeida.</RodapeTexto>
         </RodapeEstilizado>
     );
 }
