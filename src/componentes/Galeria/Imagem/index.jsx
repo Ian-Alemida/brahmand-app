@@ -9,6 +9,7 @@ const Figure = styled.figure`
     flex-direction: column;
     & > img {
         max-width: 100%;
+        height: ${props => props.$expandida ? '651px' : '321px'};
         border-radius: 20px 20px 0 0;
     }
     figcaption {
@@ -37,7 +38,7 @@ const Rodape = styled.footer`
     align-items: center;
 `
 
-const Imagem = ({ foto, expandida = false, aoZoomSolicitado, aoFavoritar }) => {
+const Imagem = ({ foto, aoZoomSolicitado, aoFavoritar, expandida = false }) => {
 
     const fotoFavorita = foto.favorita ? "/icones/favorito-ativo.png" : "/icones/favorito.png"
     

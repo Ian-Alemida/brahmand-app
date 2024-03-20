@@ -81,7 +81,7 @@ const App = () => {
           <BarraLateral />
           <ConteudoGaleria>
             <Banner
-              texto="A galeria mais completa de fotos do misticas!"
+              texto="A galeria mais completa de fotos misticas!"
               backgroundImage={bannerBackground} />
             <Galeria
               aoFavoritar={aoFavoritar}
