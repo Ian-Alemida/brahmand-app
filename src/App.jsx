@@ -9,6 +9,7 @@ import fotos from './fotos.json'
 import { useEffect, useState } from "react"
 import ModalZoom from "./componentes/ModalZoom"
 import Rodape from "./componentes/Rodape"
+import NextConjunto from "./componentes/NextConjunto"
 
 const FundoGradiente = styled.div`
   background: linear-gradient(174.61deg, #041833 4.16%, #04244F 48%, #154580 96.76%);
@@ -39,6 +40,10 @@ const App = () => {
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [filtroBusca, setFiltroBusca] = useState('')
   const [tag, setTag] = useState(0)
+
+  const primeiroConjunto = fotosDaGaleria.slice(0, 8);
+  const segundoConjunto = fotosDaGaleria.slice(8, 16);
+  const [conjunto, setConjunto] = useState(primeiroConjunto)
 
   //Função que ignora acentos das palavras
   const removeAcentos = (string) => {
@@ -87,9 +92,10 @@ const App = () => {
               aoFavoritar={aoFavoritar}
               aoFotoSelecionada={foto => setFotoSelecionada(foto)}
               setTag={setTag}
-              fotos={fotosDaGaleria} />
+              fotos={tag != 0 ? fotosDaGaleria : conjunto} />
           </ConteudoGaleria>
         </MainContainer>
+        <NextConjunto conjunto1={primeiroConjunto} conjunto2={segundoConjunto} setConjunto={setConjunto}/>
       </AppContainer>
       <Rodape />
       <ModalZoom
