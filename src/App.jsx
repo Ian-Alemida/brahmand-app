@@ -41,6 +41,7 @@ const App = () => {
   const [filtroBusca, setFiltroBusca] = useState('')
   const [tag, setTag] = useState(0)
 
+  //Dividindo fotos em conjuntos
   const primeiroConjunto = fotosDaGaleria.slice(0, 8);
   const segundoConjunto = fotosDaGaleria.slice(8, 16);
   const [conjunto, setConjunto] = useState(primeiroConjunto)
@@ -92,7 +93,7 @@ const App = () => {
               aoFavoritar={aoFavoritar}
               aoFotoSelecionada={foto => setFotoSelecionada(foto)}
               setTag={setTag}
-              fotos={tag != 0 ? fotosDaGaleria : conjunto} />
+              fotos={tag !== 0 || filtroBusca !== '' ? fotosDaGaleria : conjunto} />
           </ConteudoGaleria>
         </MainContainer>
         <NextConjunto conjunto1={primeiroConjunto} conjunto2={segundoConjunto} setConjunto={setConjunto}/>
