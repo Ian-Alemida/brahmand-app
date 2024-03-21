@@ -35,13 +35,13 @@ const ConteudoGaleria = styled.section`
 
 const App = () => {
   //-------- Estados da aplicação
-  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
+  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos.sort(() => Math.random() - 0.5))//ordena as fotos de maneira aleatória
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [filtroBusca, setFiltroBusca] = useState('')
   const [tag, setTag] = useState(0)
 
   //Função que ignora acentos das palavras
-  function removeAcentos(string) {
+  const removeAcentos = (string) => {
     return string.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
