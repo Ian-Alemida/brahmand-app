@@ -5,7 +5,7 @@ O aplicativo que desenvolvi é uma galeria interativa que apresenta uma vasta co
 ## Recursos Principais:
 
 - Zoom: Os usuários podem ampliar as imagens para visualização detalhada, explorando cada detalhe das fotos do cosmos e das imagens místicas.
-- Descrição das Imagens: Cada imagem é acompanhada de uma descrição detalhada, fornecendo informações relevantes sobre o conteúdo e sua origem.
+- Descrição das Imagens: Cada imagem é acompanhada de uma descrição, fornecendo informações sobre o conteúdo e sua origem.
 - Categorização por Tags: Implementei um sistema de tags que permite aos usuários filtrar as imagens por categorias específicas, facilitando a navegação e a descoberta de conteúdo relacionado.
 
 ## Tecnologias e Conceitos Utilizados:
