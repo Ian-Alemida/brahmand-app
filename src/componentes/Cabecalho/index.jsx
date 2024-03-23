@@ -1,5 +1,6 @@
 import { styled } from "styled-components"
 import CampoTexto from "../CampoTexto"
+import logo from '../../../public/imagens/logo.png'
 
 const HeaderEstilizado = styled.header`
     padding: 60px 0;
@@ -12,7 +13,7 @@ const HeaderEstilizado = styled.header`
 
 const Cabecalho = ({setFiltroBusca}) => {
     return (<HeaderEstilizado>
-        <img src="/imagens/logo.png" alt="" />
+        <img src={logo} alt="" />
         <CampoTexto setFiltroBusca={setFiltroBusca}/>
     </HeaderEstilizado>)
 }
