@@ -5,14 +5,14 @@ const HeaderEstilizado = styled.header`
     padding: 60px 0;
     display: flex;
     justify-content: space-between;
-    img {
-        width: 252px;
-    }
 `
-
+const ImgCabecalho = styled.img`
+width: 252px;
+height: 108px;
+`
 const Cabecalho = ({setFiltroBusca}) => {
     return (<HeaderEstilizado>
-        <img src='/imagens/logo.png' alt="" />
+        <ImgCabecalho src='/imagens/logo.png' alt="" />
         <CampoTexto setFiltroBusca={setFiltroBusca}/>
     </HeaderEstilizado>)
 }
